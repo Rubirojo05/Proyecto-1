@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "NodeNext",
+        "esModuleInterop": true,
+        "target": "ES6",
+        "moduleResolution": "NodeNext",
+        "removeComments": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "strict": false,
+        "strictNullChecks": true,
+        "skipLibCheck": true, 
+        "outDir": "./dist",
+    },
+    "include": [
+        "./**/*.ts",
+    ]
+}

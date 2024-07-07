@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Micomponente from '../components/contador';
+import Micomponente2 from '../components/random';
 ---
 
 <Layout title="Contador de clientes.">
 	<main class="h-full w-full flex justify-center items-center">
-	<Micomponente client:load></Micomponente>
+	<!-- <Micomponente client:load></Micomponente> CONTADOR -->
+	<Micomponente2 client:load></Micomponente2>
 	</main>
 </Layout>
 

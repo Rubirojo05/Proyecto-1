@@ -1,4 +1,5 @@
 const express = require("express")
+const cors = require("cors")
 
 const app = express()
 const port = 1900
@@ -6,9 +7,15 @@ const minimo = 100
 const maximo = 200
 let cuenta = 0
 
-function randomEntre(min:number, max:number){
+function randomEntre(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
+
+const opcionesCors = {
+    origin: 'http://localhost:4321',
+}
+
+app.use(cors(opcionesCors));
 
 app.get('/', (req, res) => {
     res.send('Hola Mundo!')

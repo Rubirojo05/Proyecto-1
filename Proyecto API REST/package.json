@@ -1,5 +1,13 @@
 {
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "scripts": {
+    "start": "ts-node index.ts",
+    "dev": "ts-node index.ts"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2"
   }
 }

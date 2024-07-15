@@ -42,7 +42,16 @@ app.get('/ip', async (req, res) => {
     }
 });
 
-
+app.get('/ipinfo', async (req, res) => {
+    try {
+        const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        const respuesta = await axios.get(`https://api.ipapi.is/${ip}`);
+        res.send(respuesta.data);
+    } catch (error) {
+        console.error('Error al obtener la IP', error)
+        res.status(500).send('Error al obtener la IP');
+    }
+});
 
 app.listen(port, () => {
     console.log(`Escuchando en puerto ${port}`)

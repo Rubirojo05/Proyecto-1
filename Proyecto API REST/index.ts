@@ -1,5 +1,6 @@
 const express = require("express")
 const cors = require("cors")
+const axios = require("axios");
 
 const app = express()
 const port = 1900
@@ -30,6 +31,18 @@ app.get('/random', (req, res) => {
     const random = randomEntre(minimo, maximo)
     res.send(random.toString())
 })
+
+app.get('/ip', async (req, res) => {
+    try {
+        const response = await axios.get('https://ifconfig.me/');
+        res.send(response.data);
+    } catch (error) {
+        console.error('Error al obtener la IP', error)
+        res.status(500).send('Error al obtener la IP');
+    }
+});
+
+
 
 app.listen(port, () => {
     console.log(`Escuchando en puerto ${port}`)

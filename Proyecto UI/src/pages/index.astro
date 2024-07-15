@@ -1,16 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Micomponente from '../components/contador';
-import Micomponente2 from '../components/random';
+import Header from '../components/header.astro';
 ---
 
-<Layout title="Contador de clientes.">
-	<main class="h-full w-full flex justify-center items-center">
-	<!-- <Micomponente client:load></Micomponente> CONTADOR -->
-	<Micomponente2 client:load></Micomponente2>
+<Layout title="Menú principal">
+	<main>
+		<Header/>
+		<div class="mx-auto text-center mb-8 lg:mb-16">
+		<h1 class="text-4xl text-white font-bold mx-auto text-center mb-8 lg:mb-16">BIENVENIDO A MIS PROYECTOS</h1>
+		<p class="font-light text-gray-500 sm:text-xl Idark:text-gray-400">
+            Esta página se irá actualizando cada vez que salga un proyecto nuevo.
+        </p>	
+		</div>
+		
 	</main>
 </Layout>
 
-<style>
-	
-</style>

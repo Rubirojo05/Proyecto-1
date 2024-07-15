@@ -1,0 +1,68 @@
+---
+console.log("javascript");
+import Headerbutton from "./headerbutton.astro";
+---
+
+<header class="py-8 px-4 mx-auto max-w-xl lg:py-16 lg:px-6">
+    <div class="mx-auto text-center mb-8 lg:mb-16">
+        <h2 class="mb-4 text-5xl tracking-tight font-extraboldtext-white">
+            <a href="/">Rubén Rojo Moreno</a>
+        </h2>
+        <p class="font-light text-gray-500 sm:text-xl Idark:text-gray-400">
+            Todos los proyectos de Rubén Rojo
+        </p>
+    </div>
+    <nav
+        class="flex flex-col items-center justify-between w-full text-center md:flex-row"
+    >
+        <Headerbutton class="text-white" href="/aleatorio">
+            <svg
+                slot="before"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path
+                    d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
+                ></path>
+                <path
+                    d="M8 7m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z"
+                ></path>
+                <path d="M8 14l0 .01"></path>
+                <path d="M12 14l0 .01"></path>
+                <path d="M16 14l0 .01"></path>
+                <path d="M8 17l0 .01"></path>
+                <path d="M12 17l0 .01"></path>
+                <path d="M16 17l0 .01"></path>
+            </svg>
+            Números aleatorios
+        </Headerbutton>
+        <Headerbutton class="text-white" href="/buscar">
+            <svg
+                slot="before"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 12l0 .01"></path>
+                <path d="M14.828 9.172a4 4 0 0 1 0 5.656"></path>
+                <path d="M17.657 6.343a8 8 0 0 1 0 11.314"></path>
+                <path d="M9.168 14.828a4 4 0 0 1 0 -5.656"></path>
+                <path d="M6.337 17.657a8 8 0 0 1 0 -11.314"></path>
+            </svg>
+            Información IP
+        </Headerbutton>
+    </nav>
+</header>

@@ -4,9 +4,9 @@ import Header from "../components/header.astro";
 import Buscar from "../components/buscar";
 ---
 
-<Layout title="Información IP">
+<Layout title="Información IP.">
 	<Header />
 	<main class="w-full flex justify-center items-center">
-		<Buscar />
+		<Buscar client:load></Buscar>
 	</main>
 </Layout>

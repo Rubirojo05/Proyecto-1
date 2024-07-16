@@ -43,15 +43,39 @@ app.get('/ip', async (req, res) => {
 });
 
 app.get('/ipinfo', async (req, res) => {
-    try {
-        const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-        const respuesta = await axios.get(`https://api.ipapi.is/${ip}`);
-        res.send(respuesta.data);
-    } catch (error) {
-        console.error('Error al obtener la IP', error)
-        res.status(500).send('Error al obtener la IP');
+    const ip = req.query.ip;
+    if (!ip) {
+        console.log('IP no proporcionada en la solicitud');
+        return res.status(400).send('IP no proporcionada');
     }
+
+    console.log(`IP recibida: ${ip}`);
+
+    try {
+        const response = await axios.get(`https://api.ipapi.is/?q=${ip}`);
+        const data = response.data;
+
+        const IpInfo = `
+            IP: ${data.ip}\n
+            COMPAÑÍA: ${data.company.name}\n
+            NETWORK: ${data.company.network}\n
+            RUTA: ${data.asn.route}\n
+            DESCRIPCIÓN: ${data.asn.descr}\n
+            PAÍS: ${data.asn.country}\n
+            ORGANIZACIÓN: ${data.asn.org}\n
+            DOMINIO: ${data.asn.domain}\n
+            LOCALIZACIÓN: ${data.location.city}\n
+            ZONA HORARIA: ${data.location.timezone}\n
+            HORA ACTUAL: ${data.location.local_time} `;
+
+        res.json(IpInfo);
+    } catch (error) {
+        console.error('Error al obtener la información de IP', error);
+        res.status(500).send('Error al obtener la información de IP');
+    }
+
 });
+
 
 app.listen(port, () => {
     console.log(`Escuchando en puerto ${port}`)

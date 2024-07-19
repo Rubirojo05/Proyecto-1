@@ -80,4 +80,3 @@ app.get('/ipinfo', async (req, res) => {
 app.listen(port, () => {
     console.log(`Escuchando en puerto ${port}`)
 })
-

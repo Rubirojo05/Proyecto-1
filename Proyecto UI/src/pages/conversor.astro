@@ -1,12 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/header.astro";
-import Convierte from "../components/convierte";
+import Converter from "../components/convierte";
 ---
 
 <Layout title="Conversor de números.">
 	<Header />
-    <main class="w-full flex justify-center items-center">
-		<Convierte client:load></Convierte>
+	<main class="w-full flex justify-center items-center">
+		<Converter client:load />
 	</main>
 </Layout>

@@ -124,14 +124,14 @@ export class NumberRomanable {
   public static fromString(input: string): Result<NumberRomanable> {
     if (!Number.isInteger(Number(input))) {
       return Result.error(
-        new ErrorOwn("Invalid roman number format - not a number")
+        new ErrorOwn("Formato de número romano no válido - no es un número")
       );
     }
     const number = Number(input);
 
     if (number < 1 || number > 3999) {
       return Result.error(
-        new ErrorOwn("Invalid roman number format - out of range (1-3999)")
+        new ErrorOwn("Formato de número romano no válido - fuera de rango (1-3999)")
       );
     }
 

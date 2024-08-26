@@ -47,7 +47,7 @@ export class RomanNumber {
 
   public static fromString(input: string): Result<RomanNumber> {
     if (!this.regex.test(input)) {
-      return Result.error(new ErrorOwn("Invalid roman number format provided"));
+      return Result.error(new ErrorOwn("Se proporcionó un formato de número romano no válido"));
     }
 
     return Result.success(new RomanNumber(input));

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Converter } from "../../Common/converter";
-import { RomanToDecimalConverter } from "../Roman/romanToDecimalConverter";
-import { DecimalToRomanConverter } from "../Roman/decimalToRomanConverter";
+import { RomanToDecimalConverter } from "../Converters/romanToDecimalConverter";
+import { DecimalToRomanConverter } from "../Converters/decimalToRomanConverter";
 import { Validator } from "../../BuildingBlocks/validator";
 
 const ConverterComponent = () => {

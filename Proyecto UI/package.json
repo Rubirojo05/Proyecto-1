@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "jest"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
@@ -23,6 +24,9 @@
     "typescript": "^5.5.3"
   },
   "devDependencies": {
-    "@types/node": "^22.5.0"
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^22.5.0",
+    "jest": "^29.7.0"
   }
 }

@@ -12,9 +12,9 @@ describe("decimalToRomanConverter", () => {
 
 describe("romanizable", () => {
     it("should return error when 0 is passed", () => {
-      const input = "1";
+      const input = "0";
       const romanizable = NumberRomanable.fromString(input);
-      expect(romanizable.getError().message).toEqual("Invalid roman number format - out of range (1-3999)");
+      expect(romanizable.getError().message).toEqual("Formato de número romano no válido - fuera de rango (1-3999)");
     });
   });
 

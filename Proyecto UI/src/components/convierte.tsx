@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Converter } from "../../Common/converter";
 import { RomanToDecimalConverter } from "../Converters/romanToDecimalConverter";
 import { DecimalToRomanConverter } from "../Converters/decimalToRomanConverter";
-import { DecimalToHexadecimalConverter } from "../Converters/decimalToHexConverter"; // Importar el nuevo conversor
+import { DecimalToHexadecimalConverter } from "../Converters/decimalToHexConverter";
 import { Validator } from "../../BuildingBlocks/validator";
 import { HexadecimalToDecimalConverter } from "../Converters/hexToDecimalConverter";
 
@@ -10,7 +10,7 @@ const ConverterComponent = () => {
   const [inputValue, setInputValue] = useState("");
   const [result, setResult] = useState("");
   const [error, setError] = useState("");
-  const [conversionType, setConversionType] = useState("decimalToRoman"); // Agregar estado para el tipo de conversión
+  const [conversionType, setConversionType] = useState("decimalToRoman");
 
   const service = new Converter();
 

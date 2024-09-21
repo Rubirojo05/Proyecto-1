@@ -16,17 +16,15 @@ export class HexadecimalToDecimalConverter implements ConverterType {
   private convertToDecimal(value: HexadecimalNumber): Result<string> {
     let result = 0;
 
-    // Iterar sobre cada dígito hexadecimal y convertirlo a decimal
     for (let i = 0; i < value.getLength(); i++) {
       const currentChar = value.getPosition(i);
       const currentValue = HexadecimalValue[currentChar];
 
-      // Asegurarse de que el valor es un número
       if (currentValue === undefined) {
         return Result.error(new ErrorOwn("Valor hexadecimal no válido"));
       }
 
-      result = result * 16 + currentValue; // Sumar el valor del dígito actual
+      result = result * 16 + currentValue;
     }
 
     return Result.success(result.toString());
@@ -35,10 +33,10 @@ export class HexadecimalToDecimalConverter implements ConverterType {
 
 export class HexadecimalNumber {
   private value: string;
-  private static regex = new RegExp("^[0-9A-Fa-f]+$"); // Permitir mayúsculas y minúsculas
+  private static regex = new RegExp("^[0-9A-Fa-f]+$");
 
   private constructor(input: string) {
-    this.value = input.toUpperCase(); // Normalizamos a mayúsculas
+    this.value = input.toUpperCase();
   }
 
   public static fromString(input: string): Result<HexadecimalNumber> {
@@ -54,11 +52,10 @@ export class HexadecimalNumber {
   }
 
   public getPosition(index: number): string {
-    return this.value.charAt(index); // Obtener el carácter en la posición dada
+    return this.value.charAt(index);
   }
 }
 
-// Mapeo de los valores hexadecimales a sus equivalentes decimales
 const HexadecimalValue: { [key: string]: number } = {
   '0': 0,
   '1': 1,

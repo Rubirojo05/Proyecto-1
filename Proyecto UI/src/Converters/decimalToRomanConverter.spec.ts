@@ -85,7 +85,7 @@ describe("decimable", () =>{
 // tests de numero CDLVI -> 456 [hecho]
 
 
-// convertidor hexadecimal a decimal [hecho, pasarlo al front]
+// convertidor hexadecimal a decimal [hecho]
 // convertidor Romano a hexadecimal
 
 

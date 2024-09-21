@@ -23,6 +23,8 @@ export class DecimalToHexadecimalConverter implements ConverterType {
       this.convertUnits(value.getUnits())
     );
 
+    result = result.replace(/^0+/, '');
+
     return Result.success(result);
   }
 
@@ -75,7 +77,7 @@ export class NumberHexable {
     }
     const number = Number(input);
 
-    if (number < 0 || number > 65535) { // Ajuste de rango para hexadecimal
+    if (number < 0 || number > 65535) { 
       return Result.error(
         new ErrorOwn("Formato de número hexadecimal no válido - fuera de rango (0-65535)")
       );

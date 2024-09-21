@@ -16,9 +16,17 @@ export class HexadecimalToDecimalConverter implements ConverterType {
   private convertToDecimal(value: HexadecimalNumber): Result<string> {
     let result = 0;
 
+    // Iterar sobre cada dígito hexadecimal y convertirlo a decimal
     for (let i = 0; i < value.getLength(); i++) {
-      const current = value.getPosition(i);
-      result = result * 16 + Number(current);
+      const currentChar = value.getPosition(i);
+      const currentValue = HexadecimalValue[currentChar];
+
+      // Asegurarse de que el valor es un número
+      if (currentValue === undefined) {
+        return Result.error(new ErrorOwn("Valor hexadecimal no válido"));
+      }
+
+      result = result * 16 + currentValue; // Sumar el valor del dígito actual
     }
 
     return Result.success(result.toString());
@@ -27,15 +35,15 @@ export class HexadecimalToDecimalConverter implements ConverterType {
 
 export class HexadecimalNumber {
   private value: string;
-  private static regex = new RegExp("^[0-9A-Fa-f]+$");
+  private static regex = new RegExp("^[0-9A-Fa-f]+$"); // Permitir mayúsculas y minúsculas
 
   private constructor(input: string) {
-    this.value = input.toUpperCase(); // Normalizamos a mayúsculas para facilitar la conversión
+    this.value = input.toUpperCase(); // Normalizamos a mayúsculas
   }
 
   public static fromString(input: string): Result<HexadecimalNumber> {
     if (!this.regex.test(input)) {
-      return Result.error(new ErrorOwn("Se proporcionó un formato de número hexadecimal no válido"));
+      return Result.error(new ErrorOwn("Formato de número hexadecimal no válido"));
     }
 
     return Result.success(new HexadecimalNumber(input));
@@ -45,26 +53,27 @@ export class HexadecimalNumber {
     return this.value.length;
   }
 
-  public getPosition(index: number): HexadecimalValue {
-    return HexadecimalValue[this.value.charAt(index) as keyof typeof HexadecimalValue];
+  public getPosition(index: number): string {
+    return this.value.charAt(index); // Obtener el carácter en la posición dada
   }
 }
 
-export enum HexadecimalValue {
-    Zero = 0,
-    One = 1,
-    Two = 2,
-    Three = 3,
-    Four = 4,
-    Five = 5,
-    Six = 6,
-    Seven = 7,
-    Eight = 8,
-    Nine = 9,
-    A = 10,
-    B = 11,
-    C = 12,
-    D = 13,
-    E = 14,
-    F = 15,
-  }
+// Mapeo de los valores hexadecimales a sus equivalentes decimales
+const HexadecimalValue: { [key: string]: number } = {
+  '0': 0,
+  '1': 1,
+  '2': 2,
+  '3': 3,
+  '4': 4,
+  '5': 5,
+  '6': 6,
+  '7': 7,
+  '8': 8,
+  '9': 9,
+  'A': 10,
+  'B': 11,
+  'C': 12,
+  'D': 13,
+  'E': 14,
+  'F': 15
+};

@@ -25,6 +25,10 @@ export class HexadecimalToDecimalConverter implements ConverterType {
       }
 
       result = result * 16 + currentValue;
+
+      if (result > 4294967295) {
+        return Result.error(new ErrorOwn("El valor hexadecimal excede el máximo permitido (4294967295)"));
+      }
     }
 
     return Result.success(result.toString());
@@ -33,7 +37,7 @@ export class HexadecimalToDecimalConverter implements ConverterType {
 
 export class HexadecimalNumber {
   private value: string;
-  private static regex = new RegExp("^[0-9A-Fa-f]+$");
+  private static regex = new RegExp("^[0-9A-FA-F]+$");
 
   private constructor(input: string) {
     this.value = input.toUpperCase();

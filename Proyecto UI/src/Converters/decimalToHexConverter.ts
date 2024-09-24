@@ -77,7 +77,7 @@ export class NumberHexable {
     }
     const number = Number(input);
 
-    if (number < 0 || number > 65535) { 
+    if (number <= 0 || number > 65535) { 
       return Result.error(
         new ErrorOwn("Formato de número hexadecimal no válido - fuera de rango (0-65535)")
       );

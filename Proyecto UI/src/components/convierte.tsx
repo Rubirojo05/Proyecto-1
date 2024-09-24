@@ -1,68 +1,71 @@
-import React, { useState } from "react";
-import { Converter } from "../../Common/converter";
-import { RomanToDecimalConverter } from "../Converters/romanToDecimalConverter";
-import { DecimalToRomanConverter } from "../Converters/decimalToRomanConverter";
+import React, { useState, useEffect } from "react";
+import { ConverterManager } from "../Converters/converterManager";
 import { DecimalToHexadecimalConverter } from "../Converters/decimalToHexConverter";
-import { Validator } from "../../BuildingBlocks/validator";
 import { HexadecimalToDecimalConverter } from "../Converters/hexToDecimalConverter";
+import { DecimalToRomanConverter } from "../Converters/decimalToRomanConverter";
+import { RomanToDecimalConverter } from "../Converters/romanToDecimalConverter";
 
 const ConverterComponent = () => {
   const [inputValue, setInputValue] = useState("");
   const [result, setResult] = useState("");
   const [error, setError] = useState("");
-  const [conversionType, setConversionType] = useState("decimalToRoman");
+  const [fromType, setFromType] = useState("decimal");
+  const [toType, setToType] = useState("roman");
 
-  const service = new Converter();
+  const manager = new ConverterManager();
+
+  useEffect(() => {
+    manager.registerConverter("decimal", "hexadecimal", new DecimalToHexadecimalConverter());
+    manager.registerConverter("hexadecimal", "decimal", new HexadecimalToDecimalConverter());
+    manager.registerConverter("decimal", "roman", new DecimalToRomanConverter());
+    manager.registerConverter("roman", "decimal", new RomanToDecimalConverter());
+  }, [manager]);
 
   const handleConvert = () => {
-    let conversionResult;
+    const conversionResult = manager.convert(fromType, toType, inputValue);
 
-    if (conversionType === "decimalToRoman") {
-      conversionResult = Validator.isNumeric(inputValue)
-        ? service.convert(inputValue, new DecimalToRomanConverter())
-        : service.convert(inputValue, new RomanToDecimalConverter());
-    } else if (conversionType === "decimalToHex") {
-      conversionResult = Validator.isNumeric(inputValue)
-        ? service.convert(inputValue, new DecimalToHexadecimalConverter())
-        : service.convert(inputValue, new HexadecimalToDecimalConverter());
-    }
-
-    if (conversionResult && conversionResult.isSuccess()) {
+    if (conversionResult.isSuccess()) {
       setResult(conversionResult.getValue());
       setError("");
     } else {
-      setError(conversionResult?.getError().toString() || "Error en la conversión");
+      setError(conversionResult.getError().toString());
       setResult("");
     }
-  };
-
-  const getPlaceholder = () => {
-    if (conversionType === "decimalToHex") {
-      return "Introduce un número decimal o hexadecimal.";
-    }
-    return "Introduce un número decimal o romano.";
   };
 
   return (
     <div className="w-auto mx-auto bg-cyan-700 p-10 rounded-2xl border-white border-[3px]">
       <h1 className="text-2xl font-bold mb-4">Conversor Numérico</h1>
 
+      <div className="flex space-x-4">
+        <select
+          value={fromType}
+          onChange={(e) => setFromType(e.target.value)}
+          className="w-1/2 p-2 mb-4 border border-gray-300 rounded"
+        >
+          <option value="decimal">Decimal</option>
+          <option value="roman">Romano</option>
+          <option value="hexadecimal">Hexadecimal</option>
+        </select>
 
-      <select
-        value={conversionType}
-        onChange={(e) => setConversionType(e.target.value)}
-        className="w-full p-2 mb-4 border border-gray-300 rounded"
-      >
-        <option value="decimalToRoman">Decimal a Romano</option>
-        <option value="decimalToHex">Decimal a Hexadecimal</option>
-      </select>
+        <select
+          value={toType}
+          onChange={(e) => setToType(e.target.value)}
+          className="w-1/2 p-2 mb-4 border border-gray-300 rounded"
+        >
+          <option value="decimal">Decimal</option>
+          <option value="roman">Romano</option>
+          <option value="hexadecimal">Hexadecimal</option>
+        </select>
+      </div>
 
       <input
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         className="w-full p-2 mb-4 border border-gray-300 rounded"
-        placeholder={getPlaceholder()} />
+        placeholder="Introduce un valor."
+      />
 
       <button
         onClick={handleConvert}

@@ -30,7 +30,7 @@ describe("romanizable", () => {
   it("should return error when 0 is passed", () => {
     const input = "0";
     const romanizable = NumberRomanable.fromString(input);
-    expect(romanizable.getError().message).toEqual("Formato de número romano no válido - fuera de rango (1-3999)");
+    expect(romanizable.getError().message).toEqual("Formato de número decimal no válido - fuera de rango (1-3999)");
   });
 });
 
@@ -38,7 +38,7 @@ describe("romanizable", () => {
   it("should return error when -1 is passed", () => {
     const input = "-1";
     const romanizable = NumberRomanable.fromString(input);
-    expect(romanizable.getError().message).toEqual("Formato de número romano no válido - fuera de rango (1-3999)");
+    expect(romanizable.getError().message).toEqual("Formato de número decimal no válido - fuera de rango (1-3999)");
   });
 });
 
@@ -46,7 +46,7 @@ describe("romanizable", () => {
   it("should return error when 4000 is passed", () => {
     const input = "4000";
     const romanizable = NumberRomanable.fromString(input);
-    expect(romanizable.getError().message).toEqual("Formato de número romano no válido - fuera de rango (1-3999)");
+    expect(romanizable.getError().message).toEqual("Formato de número decimal no válido - fuera de rango (1-3999)");
   });
 });
 
@@ -54,7 +54,7 @@ describe("romanizable", () => {
   it("should return error when nothing is passed", () => {
     const input = "";
     const romanizable = NumberRomanable.fromString(input);
-    expect(romanizable.getError().message).toEqual("Formato de número romano no válido - fuera de rango (1-3999)");
+    expect(romanizable.getError().message).toEqual("Formato de número decimal no válido - fuera de rango (1-3999)");
   });
 });
 

@@ -131,7 +131,7 @@ export class NumberRomanable {
 
     if (number < 1 || number > 3999) {
       return Result.error(
-        new ErrorOwn("Formato de número romano no válido - fuera de rango (1-3999)")
+        new ErrorOwn("Formato de número decimal no válido - fuera de rango (1-3999)")
       );
     }
 

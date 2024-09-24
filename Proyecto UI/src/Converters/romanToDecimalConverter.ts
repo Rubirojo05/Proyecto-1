@@ -50,6 +50,14 @@ export class RomanNumber {
       return Result.error(new ErrorOwn("Se proporcionó un formato de número romano no válido"));
     }
 
+    const number = Number(input);
+
+    if (number < 1 || number > 3999) {
+      return Result.error(
+        new ErrorOwn("Formato de número romano no válido - fuera de rango (1-3999)")
+      );
+    }
+
     return Result.success(new RomanNumber(input));
   }
   public getLength(): number {

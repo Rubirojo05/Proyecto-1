@@ -38,29 +38,38 @@ const ConverterComponent = () => {
       <h1 className="text-2xl font-bold mb-4">Conversor Numérico</h1>
 
       <div className="flex space-x-4">
-        <select
-          value={fromType}
-          onChange={(e) => setFromType(e.target.value)}
-          className="w-1/2 p-2 mb-4 border border-gray-300 rounded"
-        >
-          <option value="decimal">Decimal</option>
-          <option value="roman">Romano</option>
-          <option value="hexadecimal">Hexadecimal</option>
-        </select>
+        <div className="w-1/2">
+          <label htmlFor="fromType" className="block mb-2 text-white font-bold">De:</label>
+          <select
+            id="fromType"
+            value={fromType}
+            onChange={(e) => setFromType(e.target.value)}
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
+          >
+            <option value="decimal">Decimal</option>
+            <option value="roman">Romano</option>
+            <option value="hexadecimal">Hexadecimal</option>
+          </select>
+        </div>
 
-        <select
-          value={toType}
-          onChange={(e) => setToType(e.target.value)}
-          className="w-1/2 p-2 mb-4 border border-gray-300 rounded"
-        >
-          <option value="decimal">Decimal</option>
-          <option value="roman">Romano</option>
-          <option value="hexadecimal">Hexadecimal</option>
-        </select>
+        <div className="w-1/2">
+          <label htmlFor="toType" className="block mb-2 text-white font-bold">a:</label>
+          <select
+            id="toType"
+            value={toType}
+            onChange={(e) => setToType(e.target.value)}
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
+          >
+            <option value="decimal">Decimal</option>
+            <option value="roman">Romano</option>
+            <option value="hexadecimal">Hexadecimal</option>
+          </select>
+        </div>
       </div>
 
       <input
         type="text"
+        id="inputValue"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         className="w-full p-2 mb-4 border border-gray-300 rounded"
